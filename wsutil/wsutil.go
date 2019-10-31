@@ -100,7 +100,7 @@ func wssCall(connection httputil.RingWSConnection, wssInput string, messageType 
 				log.Println("read:", err)
 				return
 			}
-			log.Printf("recv: %s", message)
+			log.Println("recv: %s", message)
 			s := string(message)
 
 			if strings.Contains(s, messageType) {
