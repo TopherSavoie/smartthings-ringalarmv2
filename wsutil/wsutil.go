@@ -100,7 +100,7 @@ func wssCall(connection httputil.RingWSConnection, wssInput string, messageType 
 				log.Println("read:", err)
 				return
 			}
-			// log.Printf("recv: %s", message)
+			log.Printf("recv: %s", message)
 			s := string(message)
 
 			if strings.Contains(s, messageType) {
@@ -146,7 +146,7 @@ func ActiveDevices(connection httputil.RingWSConnection) (*RingDeviceInfo, error
 	var ringDeviceInfo RingDeviceInfo
 	runes := []rune(wssResponse)
 	responseBody := string(runes[13 : len(wssResponse)-1])
-	//log.Printf("Response: %s\n\nJSON: %s", wssResponse, responseBody)
+	log.Printf("Response: %s\n\nJSON: %s", wssResponse, responseBody)
 	responseBody = responseBody[:strings.LastIndex(responseBody, "}") + 1]
 	log.Printf("Response: %s", responseBody)
 	err = json.Unmarshal([]byte(responseBody), &ringDeviceInfo)

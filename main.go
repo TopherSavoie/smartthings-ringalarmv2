@@ -11,7 +11,7 @@ import (
 	"github.com/TopherSavoie/smartthings-ringalarmv2/wsutil"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	//
+
 )
 
 func clientError(status int) (events.APIGatewayProxyResponse, error) {
