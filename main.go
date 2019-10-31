@@ -60,7 +60,7 @@ func getZID(apiRequest public.Request) (string, error) {
 }
 
 func getDevices(locationID string, accessToken string) (*wsutil.RingDeviceInfo, error) {
-	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/rs/connections", locationID, accessToken)
+	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/clap/tickets", locationID, accessToken)
 	return wsutil.ActiveDevices(connection)
 }
 
