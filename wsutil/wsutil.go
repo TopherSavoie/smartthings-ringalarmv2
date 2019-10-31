@@ -52,7 +52,7 @@ func Status(zid string, mode string, connection httputil.RingWSConnection) (stri
 		"    }\n" +
 		"]"
 
-	log.Println("WS Connection " + wssInput)
+	//log.Println("WS Connection " + wssInput)
 	wssCall(connection, wssInput, "DataUpdate", 1)
 
 	return "SUCCESS", nil
@@ -74,7 +74,7 @@ func wssCall(connection httputil.RingWSConnection, wssInput string, messageType 
 	var wssResponse string
 
 	wssUrl, err := wsConnection(connection)
-	log.Println("wssUrl: %s", wssUrl)
+	//log.Println("wssUrl: %s", wssUrl)
 	if err != nil {
 		log.Fatal("Parse: ", err)
 		return "", err
@@ -101,13 +101,13 @@ func wssCall(connection httputil.RingWSConnection, wssInput string, messageType 
 				log.Println("read:", err)
 				return
 			}
-			log.Println("recv: %s", message)
+			//log.Println("recv: %s", message)
 			s := string(message)
 
 			if strings.Contains(s, messageType) {
 				wssResponse = s
 			}
-			log.Println("wssResponse: %s", wssResponse)
+			//log.Println("wssResponse: %s", wssResponse)
 		}
 	}()
 
@@ -148,9 +148,9 @@ func ActiveDevices(connection httputil.RingWSConnection) (*RingDeviceInfo, error
 	var ringDeviceInfo RingDeviceInfo
 	runes := []rune(wssResponse)
 	responseBody := string(runes[13 : len(wssResponse)-1])
-	log.Printf("Response: %s\n\nJSON: %s", wssResponse, responseBody)
+	//log.Printf("Response: %s\n\nJSON: %s", wssResponse, responseBody)
 	responseBody = responseBody[:strings.LastIndex(responseBody, "}") + 1]
-	log.Printf("Response: %s", responseBody)
+	//log.Printf("Response: %s", responseBody)
 	err = json.Unmarshal([]byte(responseBody), &ringDeviceInfo)
 	if err != nil {
 		log.Fatal("Unable to Parse Status Response Data: ", err)
