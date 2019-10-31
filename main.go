@@ -60,7 +60,7 @@ func getZID(apiRequest public.Request) (string, error) {
 }
 
 func getDevices(locationID string, accessToken string) (*wsutil.RingDeviceInfo, error) {
-	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/clap/tickets", locationID, accessToken)
+	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/rs/connections", locationID, accessToken)
 	return wsutil.ActiveDevices(connection)
 }
 
@@ -114,7 +114,7 @@ func setStatus(apiRequest public.Request, status string) (events.APIGatewayProxy
 		return clientError(http.StatusInternalServerError)
 	}
 
-	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/rs/connections", locationID, accessToken)
+	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/clap/tickets", locationID, accessToken)
 	wsutil.Status(zID, status, connection)
 	log.Println("Done")
 	return events.APIGatewayProxyResponse{
