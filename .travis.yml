@@ -6,8 +6,8 @@ script:
   - zip deployment.zip main
 deploy:
   provider: releases
-  api_key: c631b2048be6e59308011b8a74eb06e73dd8b3d7
-  file: 'deployment.zip'
+  api_key: 
+    secure: LCmE0I9OBPHK6IE5um5nbk4I8+vliXkf4M1td6fJWI6bjE8OIeyNILbxpPx77/Dh5uWdp+r1omoIl8MTQgTaETSl84N/yP/zrkW6K9t/njl+Cel9S+qJMQKVVGGQJCseZOPot6YHRi6Gry5v1U0nZBhBJ9jWAJsl0UtUUvO2hgh1jifttW+362qZhpzKRqUky1K99xWq7OqMsuhczydSmlLShfMrD8URmP0L1kGjUAGPCdG2e3JUYMBBhkUE2loflOln0yzkBJd9pun7noeb6zaF53P+YVP253xIU0uU01SyfcJ4d44XZMWyQHJw7y9Td95DLJ+MBCblZzd/HDY4SqdZubp7jWyzroi0EbWsosPErWYggQrGg8QEY83/i2Lvli5PUHlF9H3Lv31++c/JOGt4CGOSUGoz9PJvCAEOzhNiH0i3z1HCt+MF1bIa/HrLcES+umpr4qfPJGWjBerGQMpcLT9bv5o0ds4IqYKTPVmV+V1htqVZ31YIUmw8C2QRnLiWqQP3+bh4zfuS2dQU/2no/IKnq/LAQQknMPVZu47EZAZLKrbWKlVDYUJ4tS5iia1cv0jBd4URqasN28pyDoRQXz/C4L9B3ZUHm3hdWVkDGwz96imQ4nqYrgtYeVF3M/zce36eQrQL3ViY8rduJz9XsOGk/9naAZsHhPoDMTc=
   skip_cleanup: true
   on:
     repo: TopherSavoie/smartthings-ringalarmv2
