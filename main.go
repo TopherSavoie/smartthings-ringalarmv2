@@ -115,6 +115,7 @@ func setStatus(apiRequest public.Request, status string) (events.APIGatewayProxy
 
 	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/rs/connections", locationID, accessToken)
 	wsutil.Status(zID, status, connection)
+	log.Println("Done")
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body:       "{\"message\": \"Success\"}",
