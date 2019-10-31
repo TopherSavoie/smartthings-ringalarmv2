@@ -217,7 +217,8 @@ func ConnectionRequest(url string, locationId string, accessToken string) RingWS
 		"Content-Type":  "application/x-www-form-urlencoded",
 	}
 	log.Println(url)
-	responseBody := post(url, headers, []byte("locationID="+locationId))
+	responseBody := post(url, headers, []byte("accountId="+locationId))
+	log.Println(responseBody)
 	var connection RingWSConnection
 	json.Unmarshal(responseBody, &connection)
         log.Println("Connection [" + connection.Server + ", " + connection.AuthCode + "]")
