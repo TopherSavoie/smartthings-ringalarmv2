@@ -6,7 +6,7 @@ script:
   - zip deployment.zip main
 deploy:
   provider: releases
-  api_key: f01940e695050ef62b5c1330b1a8cfbcd8f72831
+  api_key: c631b2048be6e59308011b8a74eb06e73dd8b3d7
   file: 'deployment.zip'
   skip_cleanup: true
   on:
