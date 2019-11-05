@@ -160,7 +160,7 @@ type RingWSConnection struct {
 }
 
 func AuthRequest(url string, oauthRequest OAuthRequest) OAuthResponse {
-	// log.Printf("OAuthRequest Data: %v", oauthRequest)
+	log.Println("AuthRequest url", url)
 	requestByte, _ := json.Marshal(oauthRequest)
 	responseBody := post(url, nil, requestByte)
 	var oauthResponse OAuthResponse
@@ -170,6 +170,7 @@ func AuthRequest(url string, oauthRequest OAuthRequest) OAuthResponse {
 }
 
 func AccessTokenRequest(url string, exchangeRequest ExchangeRequest) ExchangeResponse {
+	log.Println("AccessTokenRequest url", url)
 	requestByte, _ := json.Marshal(exchangeRequest)
 	headers := map[string]string{
 		"content-type": "application/json",
@@ -182,6 +183,7 @@ func AccessTokenRequest(url string, exchangeRequest ExchangeRequest) ExchangeRes
 }
 
 func LocationRequest(url string, accessToken string) string {
+	log.Println("LocationRequest url", url)
 	headers := map[string]string{
 		"Authorization": "Bearer " + accessToken,
 	}
@@ -194,6 +196,7 @@ func LocationRequest(url string, accessToken string) string {
 }
 
 func HistoryRequest(url string, accessToken string, locationID string, limit string) []History {
+	log.Println("HistoryRequest url", url)
 	headers := map[string]string{
 		"Authorization": "Bearer " + accessToken,
 	}
@@ -212,6 +215,7 @@ func HistoryRequest(url string, accessToken string, locationID string, limit str
 }
 
 func ConnectionRequest(url string, locationId string, accessToken string) RingWSConnection {
+	log.Println("ConnectionRequest url", url)
 	headers := map[string]string{
 		"Authorization": "Bearer " + accessToken,
 		"Content-Type":  "application/x-www-form-urlencoded",
@@ -226,6 +230,7 @@ func ConnectionRequest(url string, locationId string, accessToken string) RingWS
 }
 
 func get(url string, headers map[string]string, params map[string]string) []byte {
+	log.Println("get url", url)
 	req, _ := http.NewRequest("GET", url, nil)
 	for name, value := range headers {
 		req.Header.Add(name, value)
@@ -247,6 +252,7 @@ func get(url string, headers map[string]string, params map[string]string) []byte
 }
 
 func post(url string, headers map[string]string, requestBody []byte) []byte {
+	log.Println("post url", url)	
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(requestBody))
 	for name, value := range headers {
 		req.Header.Add(name, value)
