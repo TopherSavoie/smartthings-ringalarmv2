@@ -33,7 +33,7 @@ func Status(zid string, mode string, connection httputil.RingWSConnection) (stri
 		"    {\n" +
 		"        \"msg\": \"DeviceInfoSet\",\n" +
 		"        \"datatype\": \"DeviceInfoSetType\",\n" +
-		"        \"dst\": dst,\n" +	
+		"        \"dst\": \"custom.device.source\",\n" +	
 		"        \"body\": [\n" +
 		"            {\n" +
 		"                \"zid\": \"" + zid + "\",\n" +
