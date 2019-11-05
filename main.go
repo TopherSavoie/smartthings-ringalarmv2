@@ -124,7 +124,8 @@ func setStatus(apiRequest public.Request, status string) (events.APIGatewayProxy
 		return clientError(http.StatusInternalServerError)
 	}
 
-	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/rs/connections", locationID, accessToken)
+	//connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/rs/connections", locationID, accessToken)
+	connection := httputil.ConnectionRequest("https://app.ring.com/api/v1/clap/tickets?locationID="+locationID, locationID, accessToken)
 	wsutil.Status(zID, status, connection)
 	log.Println("Done")
 	return events.APIGatewayProxyResponse{
