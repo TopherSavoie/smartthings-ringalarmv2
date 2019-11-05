@@ -41,7 +41,8 @@ func Status(zid string, mode string, connection httputil.RingWSConnection) (stri
 		"                        {\n" +
 		"                            \"commandType\": \"security-panel.switch-mode\",\n" +                  
 		"                            \"data\": {\n" +
-		"                                \"mode\": \"" + mode + "\"\n" +
+		"                                \"mode\": \"" + mode + "\",n" +
+		"                                \"bypass\": None\n" +	
 		"                            }\n" +
 		"                        }\n" +
 		"                    ]\n" +
