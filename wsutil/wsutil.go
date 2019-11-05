@@ -74,7 +74,8 @@ func wssCall(connection httputil.RingWSConnection, wssInput string, messageType 
 	var wssResponse string
 
 	wssUrl, err := wsConnection(connection)
-	//log.Println("wssUrl: %s", wssUrl)
+	log.Println("wssUr", wssUrl)
+	log.Println("connection", connection)
 	if err != nil {
 		log.Fatal("Parse: ", err)
 		return "", err
