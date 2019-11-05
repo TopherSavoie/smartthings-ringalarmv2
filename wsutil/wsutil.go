@@ -60,8 +60,7 @@ func Status(zid string, mode string, connection httputil.RingWSConnection) (stri
 
 func wsConnection(connection httputil.RingWSConnection) (string, error) {
 	wsConnectionTemplate := template.New("wscon")
-	//wsConnectionTemplate, tmplErr := wsConnectionTemplate.Parse("wss://{{.Server}}/socket.io/?authcode={{.AuthCode}}&ack=false&EIO=3&transport=websocket")
-	wsConnectionTemplate, tmplErr := wsConnectionTemplate.Parse("wss://{{.Server}}/?authcode={{.AuthCode}}&ack=false&EIO=3&transport=websocket")
+	wsConnectionTemplate, tmplErr := wsConnectionTemplate.Parse("wss://{{.Server}}/socket.io/?authcode={{.AuthCode}}&ack=false&EIO=3&transport=websocket")
 	if tmplErr != nil {
 		log.Fatal("Parse: ", tmplErr)
 		return "", tmplErr
