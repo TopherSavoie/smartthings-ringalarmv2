@@ -52,7 +52,7 @@ func Status(zid string, mode string, connection httputil.RingWSConnection) (stri
 		"    }\n" +
 		"]"
 
-	//log.Println("WS Connection " + wssInput)
+	log.Println("WS Connection " + wssInput)
 	wssCall(connection, wssInput, "DataUpdate", 1)
 
 	return "SUCCESS", nil
