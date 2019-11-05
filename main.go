@@ -24,15 +24,18 @@ func clientError(status int) (events.APIGatewayProxyResponse, error) {
 func getAccessToken(apiRequest public.Request) (string, error) {
 	oauthRequest := httputil.OAuthRequest{"ring_official_ios", "password", apiRequest.Password, "client", apiRequest.User}
 	oauthResponse := httputil.AuthRequest("https://oauth.ring.com/oauth/token", oauthRequest)
-
+        log.Printf("oauthRequest", oauthRequest)
+	log.Printf("oauthResponse", oauthResponse)
 	exchangeRequest := httputil.ExchangeRequest{oauthResponse.AccessToken}
 	exchangeResponse := httputil.AccessTokenRequest("https://app.ring.com/api/v1/rs/launchcode/exchange", exchangeRequest)
-
+        log.Printf("exchangeRequest", exchangeRequest)
+	log.Printf("exchangeResponse", exchangeResponse)
 	return exchangeResponse.AccessToken, nil
 }
 
 func getLocationId(apiRequest public.Request, accessToken string) string {
 	locationID := apiRequest.LocationID
+	log.Printf("locationID", locationID)
 	if len(locationID) == 0 {
 		locationID = httputil.LocationRequest("https://app.ring.com/rhq/v1/devices/v1/locations", accessToken)
 	}
@@ -56,6 +59,7 @@ func getZID(apiRequest public.Request) (string, error) {
 			}
 		}
 	}
+	log.Printf("zID", zID)
 	return zID, nil
 }
 
@@ -68,6 +72,8 @@ func getStatus(apiRequest public.Request) (events.APIGatewayProxyResponse, error
 	// log.Printf("Request: %v", apiRequest)
 	accessToken, _ := getAccessToken(apiRequest)
 	locationID := getLocationId(apiRequest, accessToken)
+	log.Printf("accessToken", accessToken)
+	log.Printf("locationID", locationID)
 
 	var ringEvents []public.RingDeviceEvent
 	history := httputil.HistoryRequest("https://app.ring.com/api/v1/rs/history", accessToken, locationID, strconv.Itoa(apiRequest.HistoryLimit))
@@ -110,6 +116,10 @@ func setStatus(apiRequest public.Request, status string) (events.APIGatewayProxy
 	accessToken, _ := getAccessToken(apiRequest)
 	locationID := getLocationId(apiRequest, accessToken)
 	zID, err := getZID(apiRequest)
+	log.Printf("accessToken", accessToken)
+	log.Printf("locationID", locationID)
+	log.Printf("zID", zID)
+	
 	if err != nil {
 		return clientError(http.StatusInternalServerError)
 	}
